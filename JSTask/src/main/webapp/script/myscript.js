@@ -179,8 +179,9 @@ function calci(number)
 	else
 	{
 	document.getElementById("displayer").value+=number;
-	document.getElementById("displayer1").value+=out;
 	}
+		document.getElementById("displayer1").value=out;	
+
 }
 
 function equals()
