@@ -106,68 +106,133 @@ else if(length===0)
 }
 
 let out="";
-
+var exp;
 function calci(number)
 {
- 
+	//addition
 	if(number=='+')
 	{	
+	document.getElementById('*').style.backgroundColor="black";
+	document.getElementById('/').style.backgroundColor="black";
+	document.getElementById('-').style.backgroundColor="black";
+	out+=document.getElementById("displayer").value;
 	document.getElementById(number).style.backgroundColor="red";
-	var exp=out;
-	if(exp.charAt(exp.length-2)=="*")
+	exp=out;
+	if(exp.charAt(exp.length-1)=="-")
 	{
-	out=exp.substring(0, exp.length-2);
+		document.getElementById(number).style.backgroundColor="red";
+		out=exp.substring(0,exp.length-2)
+	}
+	else if(exp.charAt(exp.length-2)=="*" || exp.charAt(exp.length-2)=="/" || exp.charAt(exp.length-2)=="+" || exp.charAt(exp.length-2)=="-" && exp.charAt(exp.length-1)==" ")
+	{
+	out=exp.substring(0, exp.length-3);
 	console.log(out);
-	out+=document.getElementById("displayer").value+" + ";
+	out+=" + ";
+	document.getElementById("displayer1").value=out;
+	}
+	else
+	{
+	out+=" + ";
+	document.getElementById("displayer1").value=out;
+	document.getElementById("displayer").value="";
+	}
+	}
+	//subtraction
+	else if(number=='-')
+	{
+	document.getElementById("displayer1").value=out;
+	document.getElementById('*').style.backgroundColor="black";
+	document.getElementById('/').style.backgroundColor="black";
+	document.getElementById('+').style.backgroundColor="black";
+	out+=document.getElementById("displayer").value;
+	exp=out;
+	if(exp.charAt(exp.length-1)=="-")
+	{
+		document.getElementById(number).style.backgroundColor="red";
+		out=exp.substring(0,exp.length-2)
+	}
+	else if(exp.charAt(exp.length-2)=="*" ||exp.charAt(exp.length-2)=="/" ||exp.charAt(exp.length-2)=="+" ||exp.charAt(exp.length-2)=="-" && exp.charAt(exp.length-1)==" "){
+	document.getElementById(number).style.backgroundColor="red";
+    out+=document.getElementById("displayer").value;
+	document.getElementById("displayer").value=" -";
+	document.getElementById("displayer1").value=out;
+	}
+	else{
+	document.getElementById(number).style.backgroundColor="red";
+    out+=" - ";
+    document.getElementById("displayer1").value=out;
+    document.getElementById("displayer").value="";
+	}
+	}
+	
+	//multiplication
+	else if(number=='*')
+	{
+	document.getElementById("displayer1").value=out;
+	document.getElementById('+').style.backgroundColor="black";
+	document.getElementById('/').style.backgroundColor="black";
+	document.getElementById('-').style.backgroundColor="black";
+	out+=document.getElementById("displayer").value;
+	exp=out;
+	if(exp.charAt(exp.length-1)=="-")
+	{
+		document.getElementById(number).style.backgroundColor="red";
+		out=exp.substring(0,exp.length-2)
+	}
+	else if(exp.charAt(exp.length-2)=="*" || exp.charAt(exp.length-2)=="-" && exp.charAt(exp.length-1)==" " ||exp.charAt(exp.length-2)=="/" ||exp.charAt(exp.length-2)=="+"){
+    out=exp.substring(0, exp.length-3);
+	document.getElementById(number).style.backgroundColor="red";
+	out+=" * ";
+	document.getElementById("displayer1").value=out;
 	document.getElementById("displayer").value="";
 	}
 	else
 	{
-		out+=document.getElementById("displayer").value+" + ";
+	document.getElementById(number).style.backgroundColor="red";
+	out+=" * ";
+	document.getElementById("displayer1").value=out;
 	document.getElementById("displayer").value="";
 	}
 	}
-	
-	else if(number=='-')
-	{
-		var exp=out;
-		if(exp.charAt(exp.length-2)=="*"){
-	document.getElementById(number).style.backgroundColor="red";
-    out+=document.getElementById("displayer").value;
-	document.getElementById("displayer").value=" -";
-	}
-	else{
-	document.getElementById(number).style.backgroundColor="red";
-    out+=document.getElementById("displayer").value+" - ";	
-    	document.getElementById("displayer").value="";
-	}
-	}
-	
-	else if(number=='*')
-	{
-	document.getElementById(number).style.backgroundColor="red";
-	out+=document.getElementById("displayer").value+" * ";
-	console.log(out);
-	document.getElementById("displayer").value="";
-	}
-	
+	//division
 	else if(number=='/')
 	{
+	document.getElementById('*').style.backgroundColor="black";
+	document.getElementById('+').style.backgroundColor="black";
+	document.getElementById('-').style.backgroundColor="black";
+	out+=document.getElementById("displayer").value;
+	exp=out;
+	if(exp.charAt(exp.length-1)=="-")
+	{
+		document.getElementById(number).style.backgroundColor="red";
+		out=exp.substring(0,exp.length-2)
+	}
+	else if(exp.charAt(exp.length-2)=="*" ||exp.charAt(exp.length-2)=="-" && exp.charAt(exp.length-1)==" " ||exp.charAt(exp.length-2)=="+" || exp.charAt(exp.length-2)=="/"){
+	out=exp.substring(0, exp.length-3);
 	document.getElementById(number).style.backgroundColor="red";
-	out+=document.getElementById("displayer").value+" / "	;
+	out+=" / ";
+	document.getElementById("displayer1").value=out;
 	document.getElementById("displayer").value="";
+	}
+	else
+	{
+	document.getElementById(number).style.backgroundColor="red";
+	out+=" / "	;
+	document.getElementById("displayer1").value=out;
+	document.getElementById("displayer").value="";
+	}
 	}
 	
 	else if(number==ce)
 	{  
-	var exp = document.getElementById("displayer").value;  
+	exp = document.getElementById("displayer").value;  
 	document.getElementById("displayer").value= exp.substring(0, exp.length - 1);   
-	} 
+	}
 	 
 	else if(number==ac)
 	{
 	document.getElementById("hidden").value="";  
-	document.getElementById("displayer").value= ""; 
+	document.getElementById("displayer").value= "0"; 
 	document.getElementById("displayer1").value="";  
 	} 
 	
@@ -176,42 +241,44 @@ function calci(number)
 	document.getElementById("hidden").value=document.getElementById("hidden").value+document.getElementById("displayer").value;
 	document.getElementById("displayer").value="";
 	}
+	
 	else
 	{
 	document.getElementById("displayer").value+=number;
+	var num="";
+	var dis= document.getElementById("displayer").value;
+	dis=dis.replaceAll(",","");
+	console.log("This comma replaced "+dis);
+	num=numberFormat(dis);
+	console.log(num);
+    document.getElementById("displayer").value=num;
+	document.getElementById("displayer1").value+=number;
 	}
-		document.getElementById("displayer1").value=out;	
-
 }
 
 function equals()
-{	
-	document.getElementById("displayer1").value+=document.getElementById("displayer").value;
+{
 	document.getElementById('+').style.backgroundColor="black";
 	document.getElementById('*').style.backgroundColor="black";
 	document.getElementById('/').style.backgroundColor="black";
 	document.getElementById('-').style.backgroundColor="black";
- 	var input=parseInt(document.getElementById("displayer").value);
   	var output=0;
-console.log("The out is"+out);
-	console.log(out+document.getElementById("displayer").value);
-	
 	out+=document.getElementById("displayer").value;
-	console.log("Display value "+document.getElementById("displayer").value);
-	console.log("cal input"+out);
-	output=cal(out);
+	document.getElementById("displayer1").value=out;
+	console.log("This is output string "+out);
+	output=calculate(out);
 	out="";
-	document.getElementById("displayer").value=output;
-	console.log("This is output"+output);
+	document.getElementById("displayer").value=numberFormat(output);
 }
 
-function cal(str){
-    let arr = str.split(" ");
- arr =  arr.filter(e =>  e);
-
+function calculate(str){	
+	
+	str=str.replaceAll(",","");
+	console.log("This is comma replaced string " +str);
+	let arr = str.split(" ");
+	arr =  arr.filter(e =>  e);
     for(var a=0;a<arr.length;a+=2)
 	{
-	console.log("This is loop "+arr[a]);
         switch (arr[a+1]) {
             case '+':
                 arr[a+2] = (+arr[a] + +arr[a+2]);
@@ -225,21 +292,31 @@ function cal(str){
             case '*':
                 arr[a+2] = (+arr[a] * +arr[a+2]);
                 break;
-           default:
+            default:
    			{
-	if(arr[a+1]<0)
-	{
- 			arr[a+1] = (+arr[a] + +arr[a+1]);
-				
+			if(arr[a+1]<0)
+			{
+ 			arr[a+1] = (+arr[a] + +arr[a+1]);	
 			}
             break;	
 			}
         };
-    if(a==arr.length-1)
-	{
-	console.log("This is return "+arr[a]);
-	return arr[a];
+   	 if(a==arr.length-1)
+	 {
+		return arr[a];
+	 }
 	}
-	}
+}
+
+function numberFormat(input){
+	
+ 	var str = input.toString().split(".");
+	var length=str[0].length;
+ 	var ch=str[0].charAt(length-1);
+	str[0]=str[0].substring(0, str[0].length-1);
+    str[0] = str[0].replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+	str[0]=str[0]+ch;
+    return str.join(".");
+	
 }
 
