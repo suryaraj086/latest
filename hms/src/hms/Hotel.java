@@ -15,7 +15,7 @@ public class Hotel {
 		this.hotelName = hotelName;
 	}
 
-	public int getRooms() {
+	public Integer getRooms() {
 		return rooms;
 	}
 
@@ -31,7 +31,7 @@ public class Hotel {
 		this.location = location;
 	}
 
-	public int getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 
