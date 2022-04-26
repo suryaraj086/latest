@@ -73,8 +73,11 @@ public class InternetBankRunner {
 							}
 							break;
 						case 4:
-							System.out.print("Enter the Account Number");
-							long acc = scan.nextLong();
+							long acc = InternetObj.account(id);
+							if (acc == 0) {
+								System.out.println("Enter the from account number");
+								acc = scan.nextLong();
+							}
 							try {
 								System.out.println(InternetObj.TransactionHistory(acc, id, loginCheck));
 							} catch (Exception e) {

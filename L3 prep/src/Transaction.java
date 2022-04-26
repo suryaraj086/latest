@@ -1,10 +1,8 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 
 public class Transaction {
-	LocalDate myObj = LocalDate.now();
-	LocalTime myObj1 = LocalTime.now();
-	String time = myObj.toString() + " " + myObj1.toString();
+
+	long time = System.currentTimeMillis();
 	long fromAccount;
 	long toAccount;
 	long amount;
@@ -19,11 +17,11 @@ public class Transaction {
 		this.remarks = remarks;
 	}
 
-	public String getTime() {
+	public long getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 
