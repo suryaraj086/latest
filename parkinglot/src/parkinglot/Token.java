@@ -1,9 +1,9 @@
 package parkinglot;
 
 public class Token {
-	int tokenNumber = 1;
-	String entryTime;
-	String exitTime;
+	int tokenNumber;
+	long entryTime;
+	long exitTime;
 	int vehicleNumber;
 	VehicleSize VehicleType;
 	int floor;
@@ -40,19 +40,19 @@ public class Token {
 		this.tokenNumber = tokenNumber;
 	}
 
-	public String getEntryTime() {
+	public long getEntryTime() {
 		return entryTime;
 	}
 
-	public void setEntryTime(String entryTime) {
+	public void setEntryTime(long entryTime) {
 		this.entryTime = entryTime;
 	}
 
-	public String getExitTime() {
+	public long getExitTime() {
 		return exitTime;
 	}
 
-	public void setExitTime(String exitTime) {
+	public void setExitTime(long exitTime) {
 		this.exitTime = exitTime;
 	}
 
